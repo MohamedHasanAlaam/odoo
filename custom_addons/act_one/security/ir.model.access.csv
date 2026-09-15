@@ -1,0 +1,6 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_courses,access_courses,model_courses,base.group_user,1,1,1,1
+access_registration,access_registration,model_registration,base.group_user,1,1,1,1
+access_location,access_location,model_location,base.group_user,1,1,1,1
+access_room,access_room,model_room,base.group_user,1,1,1,1
+access_teacher,access_teacher,model_teacher,base.group_user,1,1,1,1
