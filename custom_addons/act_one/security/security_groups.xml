@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- 1. Define the Master Application Category Group -->
+        <record id="module_category_training" model="ir.module.category">
+            <field name="name">Internal Training Module</field>
+            <field name="description">Access management roles for course registration logs.</field>
+            <field name="sequence">10</field>
+            <field name="visible" eval="True"/> 
+        </record>
+
+        <!-- 2. The Requester (Standard Trainee) Group -->
+        <record id="group_training_requester" model="res.groups">
+            <field name="name">Trainee / Requester</field>
+            <field name="category_id" ref="module_category_training"/>
+            <!-- Implies they inherit standard internal user rights -->
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <!-- 3. The Teacher Group -->
+        <record id="group_training_teacher" model="res.groups">
+            <field name="name">Teacher</field>
+            <field name="category_id" ref="module_category_training"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <!-- 4. The HR Group -->
+        <record id="group_training_hr" model="res.groups">
+            <field name="name">HR Administrator</field>
+            <field name="category_id" ref="module_category_training"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+    </data>
+</odoo>

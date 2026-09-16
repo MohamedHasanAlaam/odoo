@@ -1,25 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="module_category_registration" model="ir.module.category">
-        <field name="name">Registration System Access</field>
-        <field name="sequence">20</field>
-    </record>
+    <data noupdate="1">
 
-    <record id="group_registration_requester" model="res.groups">
-        <field name="name">Requester</field>
-        <field name="category_id" ref="module_category_registration"/>
-        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
-    </record>
+        <!-- Trainee Rule: Standard trainees only see records they created -->
+        <record id="rule_reg_personal" model="ir.rule">
+            <field name="name">Trainee: Personal Registrations Only</field>
+            <field name="model_id" ref="model_registration"/>
+            <field name="groups" eval="[(4, ref('act_one.group_training_requester'))]"/>
+            <field name="domain_force">[('create_uid', '=', user.id)]</field>
+        </record>
 
-    <record id="group_registration_teacher" model="res.groups">
-        <field name="name">Teacher</field>
-        <field name="category_id" ref="module_category_registration"/>
-        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
-    </record>
+        <!-- Teacher Rule: Teachers only see records where they are assigned -->
+        <record id="rule_reg_teacher" model="ir.rule">
+            <field name="name">Teacher: Mapped Course Registrations Only</field>
+            <field name="model_id" ref="model_registration"/>
+            <field name="groups" eval="[(4, ref('act_one.group_training_teacher'))]"/>
+            <field name="domain_force">[('course_id.teacher_id.user_id', '=', user.id)]</field>
+        </record>
 
-    <record id="group_registration_hr" model="res.groups">
-        <field name="name">HR</field>
-        <field name="category_id" ref="module_category_registration"/>
-        <field name="implied_ids" eval="[(4, ref('group_registration_requester')), (4, ref('group_registration_teacher'))]"/>
-    </record>
+        <!-- HR Rule: Bypasses all row-level filtering barriers globally -->
+        <record id="rule_reg_hr" model="ir.rule">
+            <field name="name">HR: Global Visibility Oversight</field>
+            <field name="model_id" ref="model_registration"/>
+            <field name="groups" eval="[(4, ref('act_one.group_training_hr'))]"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+        </record>
+
+    </data>
 </odoo>
