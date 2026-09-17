@@ -10,6 +10,7 @@
         'security/security_groups.xml',
         'security/ir.model.access.csv',
         'security/security.xml',
+        'data/sequences.xml',
         'views/main_menu.xml',
      ],
     'application': True,
