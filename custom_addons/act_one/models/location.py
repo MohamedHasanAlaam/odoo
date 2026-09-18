@@ -2,9 +2,10 @@ from odoo import models, fields, api
 
 class Location(models.Model):
     _name = "location"
+    _description = "Course Location"
 
-    name = fields.Char(required=True)
-    code = fields.Char(readonly=True, default='New')
+    name = fields.Char(string='Location Name', required=True)
+    code = fields.Char(string='Location Code', readonly=True, default='New')
 
 
     @api.model_create_multi

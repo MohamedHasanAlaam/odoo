@@ -160,7 +160,7 @@
                 </form>
             </field>
         </record>
-
+        
         <record id="view_my_courses_list" model="ir.ui.view">
             <field name="name">registration.my.courses.list</field>
             <field name="model">registration</field>

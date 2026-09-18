@@ -3,15 +3,16 @@ from odoo.exceptions import ValidationError
 
 class Course(models.Model):
     _name = "course"
+    _description = "Training Courses"
 
     # attributes
-    name = fields.Char(required=True)
-    description = fields.Text(required=True)
+    name = fields.Char(string='Course Name', required=True)
+    description = fields.Text(string='Course Description', required=True)
 
     serial_number = fields.Char(string='Serial Number', readonly=True, copy=False, default='New')
 
-    start_date = fields.Date(required=True)
-    end_date = fields.Date(required=True)
+    start_date = fields.Date(string='Start Date', required=True)
+    end_date = fields.Date(string='End Date', required=True)
     
     number_of_days = fields.Integer(
         string='Number of Days', 
@@ -19,7 +20,7 @@ class Course(models.Model):
         store=True
     )
 
-    time = fields.Float(required=True)
+    time = fields.Float(string='Class/Lecture Time', required=True)
     total_seats = fields.Integer(string='Total Seats Limit', default=20, required=True)
     available_seats = fields.Integer(
         string='Available Seats',
@@ -31,7 +32,7 @@ class Course(models.Model):
         ('male', 'Male'),   
         ('female', 'Female')
         ], required=True)
-    deadline = fields.Date(required=True)
+    deadline = fields.Date(string='Registration Deadline', required=True)
 
     active = fields.Boolean('Active', default=True)
     

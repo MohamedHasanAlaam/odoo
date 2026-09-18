@@ -2,9 +2,10 @@ from odoo import models, fields, api
 
 class Room(models.Model):
     _name = "room"
+    _description = "Course Room"
 
-    name = fields.Char(required=True)
-    code = fields.Char(readonly=True, default='New')
+    name = fields.Char(string='Room Name', required=True)
+    code = fields.Char(string='Room Code', readonly=True, default='New')
 
     @api.model_create_multi
     def create(self, vals_list):

@@ -2,9 +2,10 @@ from odoo import models, fields, api
 
 class Teacher(models.Model):
     _name = "teacher"
+    _description = "Training Course Teacher"
 
-    name = fields.Char(required=True)
-    code = fields.Char(readonly=True, default='New')
+    name = fields.Char(string='Teacher Name', required=True)
+    code = fields.Char(string='Teacher Code', readonly=True, default='New')
 
     #relations
     user_id = fields.Many2one('res.users', string='Related User')
